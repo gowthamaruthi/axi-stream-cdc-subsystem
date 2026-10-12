@@ -9,7 +9,7 @@ module tb_adc_counter;
     .axis_data(data),.axis_keep(keep),.axis_last(last),.axis_valid(valid),.axis_ready(1'b0),.dropped_samples(dropped));
   initial begin
     repeat(2)@(negedge clk);rst_n=1;
-    @(negedge clk);
+    repeat(3)@(negedge clk);
     if(!valid || data!==32'habc || keep!==3 || !last)$fatal(1,"sample capture");
     // White-box preload reaches the 32-bit counter boundary without 2^32 cycles.
     dut.dropped_samples=32'hfffffffe;

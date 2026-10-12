@@ -9,7 +9,7 @@ I use this example to connect a non-backpressurable sample source to the AXI4-St
 - A sample arriving while the register is stalled is dropped. `dropped_samples` increments and saturates at `0xffffffff`.
 - Each accepted sample becomes one beat: 12 data bits zero-extended to 32, `TKEEP=0011`, `TLAST=1`. Each sample is a separate packet.
 - Data and sidebands remain stable under backpressure. The existing FIFO transfers accepted beats to the consumer clock domain.
-- Common reset flushes ingress and FIFO state and clears the drop count. Pending samples are discarded; the test checks normal drains before clearing accounting and explicitly separates the reset-abort scenario.
+- Common reset flushes ingress and FIFO state and clears the drop count. The adapter synchronizes reset release through two sample-clock stages; samples during reset/release are discarded without incrementing the drop counter. Pending samples are discarded; the test checks normal drains before clearing accounting and explicitly separates the reset-abort scenario.
 
 ```sh
 bash examples/adc/check.sh

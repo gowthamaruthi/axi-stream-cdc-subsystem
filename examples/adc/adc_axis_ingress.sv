@@ -11,12 +11,17 @@ module adc_axis_ingress (
   input wire axis_ready,
   output reg [31:0] dropped_samples
 );
+  (* ASYNC_REG="TRUE" *) reg [1:0] reset_release;
+  always @(posedge sample_clk or negedge rst_n)
+    if(!rst_n) reset_release<=0;
+    else reset_release<={reset_release[0],1'b1};
+  wire sample_rst_n=reset_release[1];
   reg [11:0] held_sample;
   assign axis_data={20'b0,held_sample};
   assign axis_keep=4'b0011;
   assign axis_last=1'b1;
-  always @(posedge sample_clk or negedge rst_n) begin
-    if(!rst_n)begin held_sample<=0;axis_valid<=0;dropped_samples<=0;end
+  always @(posedge sample_clk or negedge sample_rst_n) begin
+    if(!sample_rst_n)begin held_sample<=0;axis_valid<=0;dropped_samples<=0;end
     else begin
       if(axis_valid && axis_ready)axis_valid<=0;
       if(adc_valid)begin

@@ -1,0 +1,2 @@
+PASS ADC drop counter saturation and reset (white-box preload)
+examples/adc/tb_adc_counter.sv:19: $finish called at 80000 (1ps)

@@ -1,0 +1,3 @@
+PASS ADC integration sent=400 consumed=240 dropped=160
+PASS reset flush and restart sent=20 consumed=14 dropped=6
+examples/adc/tb_adc.sv:62: $finish called at 2994000 (1ps)

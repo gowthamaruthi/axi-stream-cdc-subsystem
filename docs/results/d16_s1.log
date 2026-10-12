@@ -1,0 +1,5 @@
+DEPTH=16 SEED=1
+MEASURE cold first accepted beat latency_ns=40
+MEASURE saturated window: beats=200 m_cycles=200 elapsed_ns=2800 beats_per_m_cycle=1.000000
+PASS writes=1777 consumed=1761 discarded=16 axil_checks=571 stalled_output_cycles=804 max_consecutive_reads=413 min_latency_ns=13 max_latency_ns=534
+tb/tb_axis_cdc.sv:236: $finish called at 52465000 (1ps)

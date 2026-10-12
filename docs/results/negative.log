@@ -1,0 +1,21 @@
+MUTATION: m_rst_n && !empty -> m_rst_n && !empty && m_axis_tready
+DEPTH=16 SEED=1
+MEASURE cold first accepted beat latency_ns=40
+FATAL: /Users/gowthamkumarmaruthi/Documents/Codex/2026-09-05/act-as-my-senior-vlsi-engineering/outputs/axi-stream-cdc-subsystem/tb/tb_axis_cdc.sv:207: buffered output must assert valid while stalled
+       Time: 17916000  Scope: tb_axis_cdc
+
+PASS detected mutation; exit 1
+MUTATION: if(wstrb[lane]) -> if(1'b1)
+DEPTH=16 SEED=1
+MEASURE cold first accepted beat latency_ns=40
+FATAL: /Users/gowthamkumarmaruthi/Documents/Codex/2026-09-05/act-as-my-senior-vlsi-engineering/outputs/axi-stream-cdc-subsystem/tb/tb_axis_cdc.sv:144: register 10 got=89abcdef expected=00000000
+       Time: 522000  Scope: tb_axis_cdc.expect_reg
+
+PASS detected mutation; exit 1
+MUTATION: if(aw_pending && w_pending && !s_axil_bvalid) -> if(aw_pending && !s_axil_bvalid)
+DEPTH=16 SEED=1
+MEASURE cold first accepted beat latency_ns=40
+FATAL: /Users/gowthamkumarmaruthi/Documents/Codex/2026-09-05/act-as-my-senior-vlsi-engineering/outputs/axi-stream-cdc-subsystem/tb/tb_axis_cdc.sv:144: register 10 got=00000000 expected=0000006e
+       Time: 630000  Scope: tb_axis_cdc.expect_reg
+
+PASS detected mutation; exit 1
